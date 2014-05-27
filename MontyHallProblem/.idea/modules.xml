@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Monty Hall Problem/Monty Hall Problem.iml" filepath="$PROJECT_DIR$/Monty Hall Problem/Monty Hall Problem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MontyHallProblem.iml" filepath="$PROJECT_DIR$/MontyHallProblem.iml" />
+    </modules>
+  </component>
+</project>
+
