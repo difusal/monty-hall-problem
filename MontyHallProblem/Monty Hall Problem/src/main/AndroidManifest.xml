@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.difusal.montyhallproblem.DisplayStatisticsActivity"
+            android:name=".StatisticsActivity"
             android:label="@string/title_activity_display_statistics"
             android:parentActivityName="com.difusal.montyhallproblem.MainActivity" >
             <meta-data

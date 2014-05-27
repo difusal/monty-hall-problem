@@ -8,6 +8,8 @@
     <string name="label_choose_swap_or_keep">2. Do you want to swap or keep your choice?</string>
     <string name="button_swap">Swap</string>
     <string name="button_keep">Keep</string>
+    <string name="swap_action_echo">You chose to swap. Selected door:</string>
+    <string name="keep_action_echo">You chose to keep. Selected door:</string>
     <string name="label_car_result">You got the car!</string>
     <string name="label_goat_result">You got a goat.</string>
     <string name="button_restart">Restart</string>

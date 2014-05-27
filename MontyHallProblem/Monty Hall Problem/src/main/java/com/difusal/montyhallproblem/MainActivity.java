@@ -1,9 +1,7 @@
 package com.difusal.montyhallproblem;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,72 +10,25 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
-    int goatDoor = 2;
-
-    long nPlays;
-    long nSwaps;
-    long nKeeps;
-
-    public void loadStatistics() {
-        Log.i("MainActivity", "Loading statistics");
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        nPlays = sharedPref.getLong(getString(R.string.label_times_played), 0);
-        nSwaps = sharedPref.getLong(getString(R.string.label_times_swapped), 0);
-        nKeeps = sharedPref.getLong(getString(R.string.label_times_kept), 0);
-    }
-
-    public void saveStatistics() {
-        Log.i("MainActivity", "Saving statistics");
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putLong(getString(R.string.label_times_played), nPlays);
-        editor.putLong(getString(R.string.label_times_swapped), nSwaps);
-        editor.putLong(getString(R.string.label_times_kept), nKeeps);
-        editor.commit();
-    }
-
-    public void updateNumPlays() {
-        Log.d("MainActivity", "Updating nPlays");
-
-        nPlays = nSwaps + nKeeps;
-        saveStatistics();
-    }
-
-    public void incSwaps() {
-        Log.d("MainActivity", "Incrementing nSwaps");
-
-        nSwaps++;
-        updateNumPlays();
-    }
-
-    public void incKeeps() {
-        Log.d("MainActivity", "Incrementing nKeeps");
-
-        nKeeps++;
-        updateNumPlays();
-    }
+    public static Logic logic = new Logic();
 
     public void door1Selected(View view) {
-        Log.d("MainActivity", "Selected door no. 1");
-
         processSelectedDoor("1");
     }
 
     public void door2Selected(View view) {
-        Log.d("MainActivity", "Selected door no. 2");
-
         processSelectedDoor("2");
     }
 
     public void door3Selected(View view) {
-        Log.d("MainActivity", "Selected door no. 3");
-
         processSelectedDoor("3");
     }
 
     public void processSelectedDoor(String str) {
+        logic.selectedDoor = Integer.parseInt(str);
+
+        Log.d("MainActivity", "Selected door no. " + logic.selectedDoor);
+
         disableDoorButtons();
         updateLabelChosenDoor(str);
         revealGoat();
@@ -105,10 +56,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void revealGoat() {
-        Log.d("MainActivity", "Goat revealed on door no." + goatDoor);
+        logic.revealGoatDoor();
 
         TextView labelGoatRevelation = (TextView) findViewById(R.id.label_goat_revelation);
-        labelGoatRevelation.setText(getString(R.string.label_goat_revelation) + " " + Integer.toString(goatDoor) + ".");
+        labelGoatRevelation.setText(getString(R.string.label_goat_revelation) + " " + Integer.toString(logic.revealedGoatDoor) + ".");
         labelGoatRevelation.setVisibility(View.VISIBLE);
     }
 
@@ -128,17 +79,29 @@ public class MainActivity extends ActionBarActivity {
     public void onSwapPress(View view) {
         Log.d("MainActivity", "Pressed swap button");
 
-        incSwaps();
+        logic.incSwaps(this);
         disableSwapAndKeepButtons();
-        showProblemResult(true);
+
+        logic.swapSelectedDoor();
+
+        TextView textView = (TextView) findViewById(R.id.label_swap_or_keep_action_echo);
+        textView.setText(getString(R.string.swap_action_echo) + " " + logic.selectedDoor);
+        textView.setVisibility(View.VISIBLE);
+
+        showProblemResult(logic.selectedDoor == logic.carDoor);
     }
 
     public void onKeepPress(View view) {
         Log.d("MainActivity", "Pressed keep button");
 
-        incKeeps();
+        logic.incKeeps(this);
         disableSwapAndKeepButtons();
-        showProblemResult(false);
+
+        TextView textView = (TextView) findViewById(R.id.label_swap_or_keep_action_echo);
+        textView.setText(getString(R.string.keep_action_echo) + " " + logic.selectedDoor);
+        textView.setVisibility(View.VISIBLE);
+
+        showProblemResult(logic.selectedDoor == logic.carDoor);
     }
 
     public void showProblemResult(boolean gotTheCar) {
@@ -155,18 +118,22 @@ public class MainActivity extends ActionBarActivity {
     public void onRestartButtonPress(View view) {
         Log.d("MainActivity", "Pressed restart button");
 
+        // generate a new monty hall problem simulation
+        logic.generateNewSimulation();
+
         enableDoorButtons();
         updateLabelChosenDoor("?");
         findViewById(R.id.label_goat_revelation).setVisibility(View.INVISIBLE);
         disableSwapAndKeepButtons();
         findViewById(R.id.button_restart).setEnabled(false);
         findViewById(R.id.label_result).setVisibility(View.INVISIBLE);
+        findViewById(R.id.label_swap_or_keep_action_echo).setVisibility(View.INVISIBLE);
     }
 
     public void onStatisticsButtonPress(View view) {
         Log.d("MainActivity", "Pressed statistics button");
 
-        Intent intent = new Intent(this, DisplayStatisticsActivity.class);
+        Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
@@ -177,24 +144,27 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // load data
-        loadStatistics();
+        logic.loadStatistics(this);
 
         // initialize label chosen door
         updateLabelChosenDoor("?");
+
+        // generate a new monty hall problem simulation
+        logic.generateNewSimulation();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        saveStatistics();
+        logic.saveStatistics(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        loadStatistics();
+        logic.loadStatistics(this);
     }
 
     @Override
