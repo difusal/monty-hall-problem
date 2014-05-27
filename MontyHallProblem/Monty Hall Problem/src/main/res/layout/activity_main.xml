@@ -8,151 +8,169 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.difusal.montyhallproblem.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/step_1"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_restart"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/label_choose_door"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:padding="5dp"
-            android:text="@string/label_choose_door"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/doors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/label_choose_door"
-            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/step_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
 
-            <Button
-                android:id="@+id/door1"
+                <TextView
+                    android:id="@+id/label_choose_door"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="5dp"
+                    android:text="@string/label_choose_door"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <LinearLayout
+                    android:id="@+id/doors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/label_choose_door"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/door1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door1Selected"
+                        android:src="@drawable/closed_door" />
+
+                    <ImageView
+                        android:id="@+id/door2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door2Selected"
+                        android:src="@drawable/closed_door" />
+
+                    <ImageView
+                        android:id="@+id/door3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door3Selected"
+                        android:src="@drawable/closed_door" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/label_chosen_door"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/doors"
+                    android:padding="5dp"
+                    android:text="@string/label_chosen_door" />
+
+                <TextView
+                    android:id="@+id/label_goat_revelation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/label_chosen_door"
+                    android:padding="5dp"
+                    android:text="@string/label_goat_revelation"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/step_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/step_1">
+
+                <TextView
+                    android:id="@+id/label_choose_swap_or_keep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/step_2"
+                    android:padding="5dp"
+                    android:text="@string/label_choose_swap_or_keep"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <LinearLayout
+                    android:id="@+id/buttons_swap_or_keep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/label_choose_swap_or_keep"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_swap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:onClick="onSwapPress"
+                        android:text="@string/button_swap" />
+
+                    <Button
+                        android:id="@+id/button_keep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:onClick="onKeepPress"
+                        android:text="@string/button_keep" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/label_swap_or_keep_action_echo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/buttons_swap_or_keep"
+                    android:padding="5dp"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/label_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="door1Selected"
-                android:text="1" />
-
-            <Button
-                android:id="@+id/door2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="door2Selected"
-                android:text="2" />
-
-            <Button
-                android:id="@+id/door3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="door3Selected"
-                android:text="3" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/label_chosen_door"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/doors"
-            android:padding="5dp"
-            android:text="@string/label_chosen_door" />
-
-        <TextView
-            android:id="@+id/label_goat_revelation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/label_chosen_door"
-            android:padding="5dp"
-            android:text="@string/label_goat_revelation"
-            android:visibility="invisible" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/step_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/step_1">
-
-        <TextView
-            android:id="@+id/label_choose_swap_or_keep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/step_2"
-            android:padding="5dp"
-            android:text="@string/label_choose_swap_or_keep"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
-            android:id="@+id/buttons_swap_or_keep"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/label_choose_swap_or_keep"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_swap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:onClick="onSwapPress"
-                android:text="@string/button_swap" />
-
-            <Button
-                android:id="@+id/button_keep"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:onClick="onKeepPress"
-                android:text="@string/button_keep" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/label_swap_or_keep_action_echo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/buttons_swap_or_keep"
-            android:padding="5dp"
-            android:visibility="invisible" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/label_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/step_2"
-        android:layout_centerHorizontal="true"
-        android:padding="5dp"
-        android:textSize="30dp"
-        android:visibility="invisible" />
+                android:layout_below="@+id/step_2"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button_restart"
