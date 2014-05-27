@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-
 public class DisplayStatisticsActivity extends ActionBarActivity {
     int nPlays;
     int nSwaps;
@@ -77,21 +76,19 @@ public class DisplayStatisticsActivity extends ActionBarActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // set title
-        alertDialogBuilder.setTitle("Reset statistics?");
+        alertDialogBuilder.setTitle(R.string.reset_statistics_alert_dialog_title);
 
         // set dialog message
+        alertDialogBuilder.setMessage(R.string.reset_statistics_alert_dialog_message);
+
         alertDialogBuilder
-                .setMessage("You'll loose all gathered data!")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.button_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         resetStatistics();
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.button_no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
                         dialog.cancel();
                     }
                 });

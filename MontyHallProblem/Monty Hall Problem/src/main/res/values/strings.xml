@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    // main activity
     <string name="app_name">Monty Hall Problem</string>
-    <string name="action_reset_statistics">Reset Statistics</string>
-    <string name="action_help">Help</string>
     <string name="button_swap">Swap</string>
     <string name="button_keep">Keep</string>
     <string name="button_statistics">Statistics</string>
 
+    // statistics activity
     <string name="title_activity_display_statistics">Statistics</string>
     <string name="times_played">Times played:</string>
     <string name="times_swapped">Times swapped:</string>
     <string name="times_kept">Times kept:</string>
 
+    // reset statistics alert dialog
+    <string name="reset_statistics_alert_dialog_title">Reset statistics?</string>
+    <string name="reset_statistics_alert_dialog_message">You'll loose all gathered data!</string>
+
+    // help activity
     <string name="title_activity_help">Help</string>
     <string name="help_intro">The Monty Hall problem is a brain teaser, in the form of a probability puzzle.</string>
-    <string name="help_problem">Here is the problem:\n\nSuppose you are on a game show, and you are given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what is behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?"\n\nIs it to your advantage to switch your choice?</string>
+    <string name="help_problem">Here is the problem:\nSuppose you are on a game show, and you are given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what is behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?"</string>
+    <string name="help_question">Is it to your advantage to switch your choice?</string>
 
-    <string name="statistics_file_key">com.difusal.montyhallproblem.STATISTICS_FILE_KEY</string>
+    // action bar buttons
+    <string name="action_reset_statistics">Reset Statistics</string>
+    <string name="action_help">Help</string>
+
+    // others
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
 </resources>
