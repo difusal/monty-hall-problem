@@ -129,6 +129,10 @@ public class DisplayStatisticsActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
+            case android.R.id.home:
+                super.onOptionsItemSelected(item);
+                onBackPressed();
+                return true;
             case R.id.action_reset_statistics:
                 showResetStatisticsAlert();
                 return true;
@@ -139,5 +143,11 @@ public class DisplayStatisticsActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right );
     }
 }

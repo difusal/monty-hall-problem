@@ -6,10 +6,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-
 
 public class MainActivity extends ActionBarActivity {
+    public void displayStatistics(View view) {
+        Intent intent = new Intent(this, DisplayStatisticsActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,5 @@ public class MainActivity extends ActionBarActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    public void displayStatistics(View view) {
-        Intent intent = new Intent(this, DisplayStatisticsActivity.class);
-        startActivity(intent);
     }
 }
