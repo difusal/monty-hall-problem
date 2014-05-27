@@ -37,36 +37,61 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/door1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="door1Selected"
                 android:text="1" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/door2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="door2Selected"
                 android:text="2" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/door3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="door3Selected"
                 android:text="3" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/label_chosen_door"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/doors"
+            android:padding="5dp"
+            android:text="@string/label_chosen_door" />
+
+        <TextView
+            android:id="@+id/label_goat_revelation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/label_chosen_door"
+            android:padding="5dp"
+            android:text="@string/label_goat_revelation"
+            android:visibility="invisible" />
+
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/step_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_statistics"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/step_1">
 
         <TextView
             android:id="@+id/label_choose_swap_or_keep"
@@ -93,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="false"
+                android:enabled="false"
                 android:text="@string/button_swap" />
 
             <Button
@@ -101,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:clickable="false"
+                android:enabled="false"
                 android:text="@string/button_keep" />
         </LinearLayout>
 

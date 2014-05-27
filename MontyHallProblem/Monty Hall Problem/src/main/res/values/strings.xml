@@ -3,6 +3,8 @@
     // main activity
     <string name="app_name">Monty Hall Problem</string>
     <string name="label_choose_door">1. Pick a door</string>
+    <string name="label_chosen_door">You chose door no.</string>
+    <string name="label_goat_revelation">A goat is on door no.</string>
     <string name="label_choose_swap_or_keep">2. Do you want to swap or keep your choice?</string>
     <string name="button_swap">Swap</string>
     <string name="button_keep">Keep</string>
