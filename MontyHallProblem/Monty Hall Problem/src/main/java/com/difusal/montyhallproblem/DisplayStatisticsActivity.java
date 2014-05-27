@@ -1,78 +1,45 @@
 package com.difusal.montyhallproblem;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 public class DisplayStatisticsActivity extends ActionBarActivity {
-    int nPlays;
-    int nSwaps;
-    int nKeeps;
+    long nPlays;
+    long nSwaps;
+    long nKeeps;
 
     public void loadStatistics() {
         Log.i("DisplayStatisticsActivity", "Loading statistics");
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
-        nPlays = sharedPref.getInt(getString(R.string.times_played), 0);
-        nSwaps = sharedPref.getInt(getString(R.string.times_swapped), 0);
-        nKeeps = sharedPref.getInt(getString(R.string.times_kept), 0);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        nPlays = sharedPref.getLong(getString(R.string.label_times_played), 0);
+        nSwaps = sharedPref.getLong(getString(R.string.label_times_swapped), 0);
+        nKeeps = sharedPref.getLong(getString(R.string.label_times_kept), 0);
     }
 
     public void saveStatistics() {
         Log.i("DisplayStatisticsActivity", "Saving statistics");
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getString(R.string.times_played), nPlays);
-        editor.putInt(getString(R.string.times_swapped), nSwaps);
-        editor.putInt(getString(R.string.times_kept), nKeeps);
+        editor.putLong(getString(R.string.label_times_played), nPlays);
+        editor.putLong(getString(R.string.label_times_swapped), nSwaps);
+        editor.putLong(getString(R.string.label_times_kept), nKeeps);
         editor.commit();
     }
 
-    public void updateTextViews() {
-        Log.d("DisplayStatisticsActivity", "Updating text views");
-        TextView nPlaysView = (TextView) findViewById(R.id.nPlays);
-        nPlaysView.setText(" " + Integer.toString(nPlays));
-
-        TextView nSwapsView = (TextView) findViewById(R.id.nSwaps);
-        nSwapsView.setText(" " + Integer.toString(nSwaps));
-
-        TextView nKeepsView = (TextView) findViewById(R.id.nKeeps);
-        nKeepsView.setText(" " + Integer.toString(nKeeps));
-    }
-
-    public void updateNumPlays() {
-        Log.d("DisplayStatisticsActivity", "Updating nPlays");
-
-        nPlays = nSwaps + nKeeps;
-
-        saveStatistics();
-
-        updateTextViews();
-    }
-
-    public void incSwaps(View view) {
-        Log.d("DisplayStatisticsActivity", "Incrementing nSwaps");
-
-        nSwaps++;
-        updateNumPlays();
-    }
-
-    public void incKeeps(View view) {
-        Log.d("DisplayStatisticsActivity", "Incrementing nKeeps");
-
-        nKeeps++;
-        updateNumPlays();
-    }
-
     public void showResetStatisticsAlert() {
+        Log.d("DisplayStatisticsActivity", "Displaying reset statistics alert");
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // set title
@@ -105,6 +72,27 @@ public class DisplayStatisticsActivity extends ActionBarActivity {
 
         nSwaps = nKeeps = 0;
         updateNumPlays();
+    }
+
+    public void updateNumPlays() {
+        Log.d("DisplayStatisticsActivity", "Updating nPlays");
+
+        nPlays = nSwaps + nKeeps;
+        saveStatistics();
+        updateTextViews();
+    }
+
+    public void updateTextViews() {
+        Log.d("DisplayStatisticsActivity", "Updating text views");
+
+        TextView nPlaysView = (TextView) findViewById(R.id.nPlaysLabel);
+        nPlaysView.setText(getString(R.string.label_times_played) + " " + Long.toString(nPlays));
+
+        TextView nSwapsView = (TextView) findViewById(R.id.nSwapsLabel);
+        nSwapsView.setText(getString(R.string.label_times_swapped) + " " + Long.toString(nSwaps));
+
+        TextView nKeepsView = (TextView) findViewById(R.id.nKeepsLabel);
+        nKeepsView.setText(getString(R.string.label_times_kept) + " " + Long.toString(nKeeps));
     }
 
     @Override
@@ -148,6 +136,7 @@ public class DisplayStatisticsActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right );
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

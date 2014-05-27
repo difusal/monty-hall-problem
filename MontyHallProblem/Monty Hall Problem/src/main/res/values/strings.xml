@@ -8,13 +8,16 @@
     <string name="label_choose_swap_or_keep">2. Do you want to swap or keep your choice?</string>
     <string name="button_swap">Swap</string>
     <string name="button_keep">Keep</string>
+    <string name="label_car_result">You got the car!</string>
+    <string name="label_goat_result">You got a goat.</string>
+    <string name="button_restart">Restart</string>
     <string name="button_statistics">Statistics</string>
 
     // statistics activity
     <string name="title_activity_display_statistics">Statistics</string>
-    <string name="times_played">Times played:</string>
-    <string name="times_swapped">Times swapped:</string>
-    <string name="times_kept">Times kept:</string>
+    <string name="label_times_played">Times played:</string>
+    <string name="label_times_swapped">Times swapped:</string>
+    <string name="label_times_kept">Times kept:</string>
 
     // reset statistics alert dialog
     <string name="reset_statistics_alert_dialog_title">Reset statistics?</string>

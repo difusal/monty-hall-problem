@@ -119,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
+                android:onClick="onSwapPress"
                 android:text="@string/button_swap" />
 
             <Button
@@ -127,10 +128,31 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:enabled="false"
+                android:onClick="onKeepPress"
                 android:text="@string/button_keep" />
         </LinearLayout>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/label_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/step_2"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:textSize="30dp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_statistics"
+        android:layout_centerHorizontal="true"
+        android:enabled="false"
+        android:onClick="onRestartButtonPress"
+        android:text="@string/button_restart" />
 
     <Button
         android:id="@+id/button_statistics"
@@ -138,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:onClick="displayStatistics"
+        android:onClick="onStatisticsButtonPress"
         android:text="@string/button_statistics" />
 
 </RelativeLayout>

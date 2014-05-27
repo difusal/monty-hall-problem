@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/times_played"
+        android:text="@string/label_times_played"
         android:id="@+id/nPlaysLabel"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -22,15 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/nPlays"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/nPlaysLabel" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/times_swapped"
+        android:text="@string/label_times_swapped"
         android:id="@+id/nSwapsLabel"
         android:layout_below="@+id/nPlaysLabel"
         android:layout_alignParentLeft="true"
@@ -40,46 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/nSwaps"
-        android:layout_below="@+id/nPlays"
-        android:layout_toRightOf="@+id/nSwapsLabel" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/times_kept"
+        android:text="@string/label_times_kept"
         android:id="@+id/nKeepsLabel"
         android:layout_below="@+id/nSwapsLabel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/nKeeps"
-        android:layout_below="@+id/nSwapsLabel"
-        android:layout_toRightOf="@+id/nKeepsLabel" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Swap"
-        android:id="@+id/buttonSwap"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="incSwaps" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Keep"
-        android:id="@+id/buttonKeep"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="incKeeps" />
 
 </RelativeLayout>
