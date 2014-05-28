@@ -7,21 +7,44 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
     public static Logic logic = new Logic();
 
     public void door1Selected(View view) {
+        ImageView imageView = (ImageView) findViewById(R.id.door1);
+        imageView.setImageResource(R.drawable.selected_closed_door);
+
         processSelectedDoor("1");
     }
 
     public void door2Selected(View view) {
+        ImageView imageView = (ImageView) findViewById(R.id.door2);
+        imageView.setImageResource(R.drawable.selected_closed_door);
+
         processSelectedDoor("2");
     }
 
     public void door3Selected(View view) {
+        ImageView imageView = (ImageView) findViewById(R.id.door3);
+        imageView.setImageResource(R.drawable.selected_closed_door);
         processSelectedDoor("3");
+    }
+
+    public ImageView getDoorImageView(int door) {
+        switch (door) {
+            case 1:
+                return (ImageView) findViewById(R.id.door1);
+            case 2:
+                return (ImageView) findViewById(R.id.door2);
+            case 3:
+                return (ImageView) findViewById(R.id.door3);
+            default:
+                Log.e("MainActivity", "getDoorImageView: No image view found");
+                return null;
+        }
     }
 
     public void processSelectedDoor(String str) {
@@ -30,7 +53,6 @@ public class MainActivity extends ActionBarActivity {
         Log.d("MainActivity", "Selected door no. " + logic.selectedDoor);
 
         disableDoorButtons();
-        updateLabelChosenDoor(str);
         revealGoat();
         enableSwapAndKeepButtons();
         findViewById(R.id.button_restart).setEnabled(true);
@@ -50,17 +72,11 @@ public class MainActivity extends ActionBarActivity {
         setDoorButtonsEnabledParameter(false);
     }
 
-    public void updateLabelChosenDoor(String str) {
-        TextView labelChosenDoor = (TextView) findViewById(R.id.label_chosen_door);
-        labelChosenDoor.setText(getString(R.string.label_chosen_door) + " " + str + ".");
-    }
-
     public void revealGoat() {
         logic.revealGoatDoor();
 
-        TextView labelGoatRevelation = (TextView) findViewById(R.id.label_goat_revelation);
-        labelGoatRevelation.setText(getString(R.string.label_goat_revelation) + " " + Integer.toString(logic.revealedGoatDoor) + ".");
-        labelGoatRevelation.setVisibility(View.VISIBLE);
+        ImageView imageView = getDoorImageView(logic.revealedGoatDoor);
+        imageView.setImageResource(R.drawable.goat_open_door);
     }
 
     public void setSwapAndKeepButtonsEnabledParameter(boolean state) {
@@ -82,11 +98,9 @@ public class MainActivity extends ActionBarActivity {
         logic.incSwaps(this);
         disableSwapAndKeepButtons();
 
+        ImageView imageView = getDoorImageView(logic.selectedDoor);
+        imageView.setImageResource(R.drawable.closed_door);
         logic.swapSelectedDoor();
-
-        TextView textView = (TextView) findViewById(R.id.label_swap_or_keep_action_echo);
-        textView.setText(getString(R.string.swap_action_echo) + " " + logic.selectedDoor);
-        textView.setVisibility(View.VISIBLE);
 
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
@@ -97,22 +111,38 @@ public class MainActivity extends ActionBarActivity {
         logic.incKeeps(this);
         disableSwapAndKeepButtons();
 
-        TextView textView = (TextView) findViewById(R.id.label_swap_or_keep_action_echo);
-        textView.setText(getString(R.string.keep_action_echo) + " " + logic.selectedDoor);
-        textView.setVisibility(View.VISIBLE);
-
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
 
     public void showProblemResult(boolean gotTheCar) {
+        // hide step 2 layout
+        findViewById(R.id.step_2).setVisibility(View.GONE);
+
+        ImageView imageView = getDoorImageView(logic.selectedDoor);
         TextView label_result = (TextView) findViewById(R.id.label_result);
 
-        if (gotTheCar)
+        if (gotTheCar) {
+            imageView.setImageResource(R.drawable.car_open_door);
             label_result.setText(getString(R.string.label_car_result));
-        else
+        } else {
+            imageView.setImageResource(R.drawable.goat_open_door);
             label_result.setText(getString(R.string.label_goat_result));
+        }
 
         label_result.setVisibility(View.VISIBLE);
+    }
+
+    public void closeAllDoors() {
+        ImageView imageView;
+
+        imageView = (ImageView) findViewById(R.id.door1);
+        imageView.setImageResource(R.drawable.closed_door);
+
+        imageView = (ImageView) findViewById(R.id.door2);
+        imageView.setImageResource(R.drawable.closed_door);
+
+        imageView = (ImageView) findViewById(R.id.door3);
+        imageView.setImageResource(R.drawable.closed_door);
     }
 
     public void onRestartButtonPress(View view) {
@@ -121,13 +151,18 @@ public class MainActivity extends ActionBarActivity {
         // generate a new monty hall problem simulation
         logic.generateNewSimulation();
 
+        closeAllDoors();
         enableDoorButtons();
-        updateLabelChosenDoor("?");
-        findViewById(R.id.label_goat_revelation).setVisibility(View.INVISIBLE);
+
+        // show step 2 layout
+        findViewById(R.id.step_2).setVisibility(View.VISIBLE);
         disableSwapAndKeepButtons();
+
+        // disable restart button
         findViewById(R.id.button_restart).setEnabled(false);
+
+        // hide result label
         findViewById(R.id.label_result).setVisibility(View.INVISIBLE);
-        findViewById(R.id.label_swap_or_keep_action_echo).setVisibility(View.INVISIBLE);
     }
 
     public void onStatisticsButtonPress(View view) {
@@ -145,9 +180,6 @@ public class MainActivity extends ActionBarActivity {
 
         // load data
         logic.loadStatistics(this);
-
-        // initialize label chosen door
-        updateLabelChosenDoor("?");
 
         // generate a new monty hall problem simulation
         logic.generateNewSimulation();
