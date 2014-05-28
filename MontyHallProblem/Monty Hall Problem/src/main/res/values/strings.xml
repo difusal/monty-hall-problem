@@ -39,4 +39,8 @@
     // others
     <string name="button_yes">Yes</string>
     <string name="button_no">No</string>
+    <string name="swapped_and_won_key">swapped_and_won</string>
+    <string name="swapped_and_lost_key">swapped_and_lost</string>
+    <string name="kept_and_won_key">kept_and_won</string>
+    <string name="kept_and_lost_key">kept_and_lost</string>
 </resources>

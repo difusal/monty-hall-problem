@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
-    public static Logic logic = new Logic();
+    public static Logic logic;
 
     public void door1Selected(View view) {
         ImageView imageView = (ImageView) findViewById(R.id.door1);
@@ -99,12 +99,13 @@ public class MainActivity extends ActionBarActivity {
 
         ImageView imageView = getDoorImageView(logic.selectedDoor);
         imageView.setImageResource(R.drawable.closed_door);
+
         logic.swapSelectedDoor();
 
         if (logic.selectedDoor == logic.carDoor)
-            logic.incSwapWins(this);
+            logic.incSwapWins();
         else
-            logic.incSwapLost(this);
+            logic.incSwapLost();
 
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
@@ -115,9 +116,9 @@ public class MainActivity extends ActionBarActivity {
         disableSwapAndKeepButtons();
 
         if (logic.selectedDoor == logic.carDoor)
-            logic.incKeepWins(this);
+            logic.incKeepWins();
         else
-            logic.incKeepLost(this);
+            logic.incKeepLost();
 
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
@@ -183,11 +184,16 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("MainActivity", "onCreate was called");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // create logic
+        logic = new Logic(this);
+
         // load data
-        logic.loadStatistics(this);
+        logic.loadStatistics();
 
         // generate a new monty hall problem simulation
         logic.generateNewSimulation();

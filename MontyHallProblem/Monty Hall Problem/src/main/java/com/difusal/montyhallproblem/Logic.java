@@ -8,31 +8,36 @@ import android.util.Log;
 import java.util.Random;
 
 public class Logic {
+    Context context;
     int carDoor, revealedGoatDoor, selectedDoor;
     long nSwapWins, nSwapLost, nKeepWins, nKeepLost;
     long nPlays, nSwaps, nKeeps;
 
-    public void loadStatistics(Context context) {
+    public Logic(Context context) {
+        this.context = context;
+    }
+
+    public void loadStatistics() {
         Log.i("Logic", "Loading statistics");
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        nSwapWins = sharedPref.getLong(context.getString(R.string.label_times_swapped_and_won), 0);
-        nSwapLost = sharedPref.getLong(context.getString(R.string.label_times_swapped_and_lost), 0);
-        nKeepWins = sharedPref.getLong(context.getString(R.string.label_times_kept_and_won), 0);
-        nKeepLost = sharedPref.getLong(context.getString(R.string.label_times_kept_and_lost), 0);
+        nSwapWins = sharedPref.getLong(context.getString(R.string.swapped_and_won_key), 0);
+        nSwapLost = sharedPref.getLong(context.getString(R.string.swapped_and_lost_key), 0);
+        nKeepWins = sharedPref.getLong(context.getString(R.string.kept_and_won_key), 0);
+        nKeepLost = sharedPref.getLong(context.getString(R.string.kept_and_lost_key), 0);
 
-        updateNumPlays(context);
+        updateNumPlays();
     }
 
-    public void saveStatistics(Context context) {
+    public void saveStatistics() {
         Log.i("Logic", "Saving statistics");
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putLong(context.getString(R.string.label_times_swapped_and_won), nSwapWins);
-        editor.putLong(context.getString(R.string.label_times_swapped_and_lost), nSwapLost);
-        editor.putLong(context.getString(R.string.label_times_kept_and_won), nKeepWins);
-        editor.putLong(context.getString(R.string.label_times_kept_and_lost), nKeepLost);
+        editor.putLong(context.getString(R.string.swapped_and_won_key), nSwapWins);
+        editor.putLong(context.getString(R.string.swapped_and_lost_key), nSwapLost);
+        editor.putLong(context.getString(R.string.kept_and_won_key), nKeepWins);
+        editor.putLong(context.getString(R.string.kept_and_lost_key), nKeepLost);
         editor.commit();
     }
 
@@ -66,35 +71,45 @@ public class Logic {
         selectedDoor = 6 - selectedDoor - revealedGoatDoor;
     }
 
-    public void incSwapWins(Context context) {
+    public void incSwapWins() {
         Log.d("Logic", "nSwapWins++");
 
         nSwapWins++;
-        updateNumPlays(context);
+        updateNumPlays();
+        saveStatistics();
     }
 
-    public void incSwapLost(Context context) {
+    public void incSwapLost() {
         Log.d("Logic", "nSwapLost++");
 
         nSwapLost++;
-        updateNumPlays(context);
+        updateNumPlays();
+        saveStatistics();
     }
 
-    public void incKeepWins(Context context) {
+    public void incKeepWins() {
         Log.d("Logic", "nKeepWins++");
 
         nKeepWins++;
-        updateNumPlays(context);
+        updateNumPlays();
+        saveStatistics();
     }
 
-    public void incKeepLost(Context context) {
+    public void incKeepLost() {
         Log.d("Logic", "nKeepLost++");
 
         nKeepLost++;
-        updateNumPlays(context);
+        updateNumPlays();
+        saveStatistics();
     }
 
-    public void updateNumPlays(Context context) {
+    public void updateNumPlays() {
+        Log.d("Logic", "nSwapWins = " + nSwapWins);
+        Log.d("Logic", "nSwapLost = " + nSwapLost);
+
+        Log.d("Logic", "nKeepWins = " + nKeepWins);
+        Log.d("Logic", "nKeepLost = " + nKeepLost);
+
         nSwaps = nSwapWins + nSwapLost;
         Log.d("Logic", "nSwaps = " + nSwaps);
 
@@ -103,14 +118,13 @@ public class Logic {
 
         nPlays = nSwaps + nKeeps;
         Log.d("Logic", "nPlays = " + nPlays);
-
-        saveStatistics(context);
     }
 
-    public void resetStatistics(Context context) {
-        Log.d("StatisticsActivity", "Resetting Statistics");
+    public void resetStatistics() {
+        Log.i("StatisticsActivity", "Resetting Statistics");
 
         nSwapWins = nSwapLost = nKeepWins = nKeepLost = 0;
-        updateNumPlays(context);
+        updateNumPlays();
+        saveStatistics();
     }
 }

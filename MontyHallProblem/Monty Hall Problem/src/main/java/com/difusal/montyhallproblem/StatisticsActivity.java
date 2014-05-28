@@ -1,7 +1,6 @@
 package com.difusal.montyhallproblem;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,11 +24,11 @@ public class StatisticsActivity extends ActionBarActivity {
         // set dialog message
         alertDialogBuilder.setMessage(R.string.reset_statistics_alert_dialog_message);
 
-        final Context context = this;
+        // set dialog buttons
         alertDialogBuilder
                 .setPositiveButton(R.string.button_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        logic.resetStatistics(context);
+                        logic.resetStatistics();
                         updateTextViews();
                     }
                 })
@@ -71,6 +70,8 @@ public class StatisticsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("StatisticsActivity", "onCreate was called");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
@@ -80,16 +81,12 @@ public class StatisticsActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.statistics, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case android.R.id.home:
                 super.onOptionsItemSelected(item);
