@@ -8,70 +8,87 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.difusal.montyhallproblem.StatisticsActivity">
 
-    <TextView
-        android:id="@+id/nPlays"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/label_times_played"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/nSwaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/nPlays"
-        android:text="@string/label_times_swapped"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/nPlays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="@string/label_times_played"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/nSwapWins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/nSwaps"
-        android:layout_marginLeft="30dp"
-        android:text="@string/label_times_swapped_and_won" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/nSwapLost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/nKeeps"
-        android:layout_centerHorizontal="true"
-        android:text="@string/label_times_swapped_and_lost" />
+            <TextView
+                android:id="@+id/nSwaps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:text="@string/label_times_swapped"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/nKeeps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/nSwapWins"
-        android:text="@string/label_times_kept"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/nSwapWins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nSwaps"
+                android:text="@string/label_times_swapped_and_won" />
 
-    <TextView
-        android:id="@+id/nKeepWins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/nSwapWins"
-        android:layout_alignStart="@+id/nSwapWins"
-        android:layout_below="@+id/nKeeps"
-        android:text="@string/label_times_kept_and_won" />
+            <TextView
+                android:id="@+id/nSwapLost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/nSwaps"
+                android:text="@string/label_times_swapped_and_lost" />
+        </RelativeLayout>
 
-    <TextView
-        android:id="@+id/nKeepLost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/nSwapLost"
-        android:layout_alignStart="@+id/nSwapLost"
-        android:layout_below="@+id/nKeeps"
-        android:text="@string/label_times_kept_and_lost" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nKeeps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:text="@string/label_times_kept"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/nKeepWins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/nKeeps"
+                android:text="@string/label_times_kept_and_won" />
+
+            <TextView
+                android:id="@+id/nKeepLost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/nKeeps"
+                android:text="@string/label_times_kept_and_lost" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
