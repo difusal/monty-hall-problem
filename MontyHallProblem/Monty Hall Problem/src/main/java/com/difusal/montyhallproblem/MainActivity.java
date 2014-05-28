@@ -128,13 +128,16 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.step_2).setVisibility(View.GONE);
 
         ImageView imageView = getDoorImageView(logic.selectedDoor);
+        ImageView remainingDoorImageView = getDoorImageView(logic.getRemainingDoor());
         TextView label_result = (TextView) findViewById(R.id.label_result);
 
         if (gotTheCar) {
-            imageView.setImageResource(R.drawable.car_open_door);
+            imageView.setImageResource(R.drawable.selected_car_open_door);
+            remainingDoorImageView.setImageResource(R.drawable.goat_open_door);
             label_result.setText(getString(R.string.label_car_result));
         } else {
-            imageView.setImageResource(R.drawable.goat_open_door);
+            imageView.setImageResource(R.drawable.selected_goat_open_door);
+            remainingDoorImageView.setImageResource(R.drawable.car_open_door);
             label_result.setText(getString(R.string.label_goat_result));
         }
 

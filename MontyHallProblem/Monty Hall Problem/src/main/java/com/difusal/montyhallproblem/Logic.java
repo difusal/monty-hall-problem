@@ -71,6 +71,10 @@ public class Logic {
         selectedDoor = 6 - selectedDoor - revealedGoatDoor;
     }
 
+    public int getRemainingDoor() {
+        return 6 - selectedDoor - revealedGoatDoor;
+    }
+
     public void incSwapWins() {
         Log.d("Logic", "nSwapWins++");
 
@@ -104,20 +108,20 @@ public class Logic {
     }
 
     public void updateNumPlays() {
-        Log.d("Logic", "nSwapWins = " + nSwapWins);
-        Log.d("Logic", "nSwapLost = " + nSwapLost);
+        Log.v("Logic", "nSwapWins = " + nSwapWins);
+        Log.v("Logic", "nSwapLost = " + nSwapLost);
 
-        Log.d("Logic", "nKeepWins = " + nKeepWins);
-        Log.d("Logic", "nKeepLost = " + nKeepLost);
+        Log.v("Logic", "nKeepWins = " + nKeepWins);
+        Log.v("Logic", "nKeepLost = " + nKeepLost);
 
         nSwaps = nSwapWins + nSwapLost;
-        Log.d("Logic", "nSwaps = " + nSwaps);
+        Log.v("Logic", "nSwaps = " + nSwaps);
 
         nKeeps = nKeepWins + nKeepLost;
-        Log.d("Logic", "nKeeps = " + nKeeps);
+        Log.v("Logic", "nKeeps = " + nKeeps);
 
         nPlays = nSwaps + nKeeps;
-        Log.d("Logic", "nPlays = " + nPlays);
+        Log.v("Logic", "nPlays = " + nPlays);
     }
 
     public void resetStatistics() {
