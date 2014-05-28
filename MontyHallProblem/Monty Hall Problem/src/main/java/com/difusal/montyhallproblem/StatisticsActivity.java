@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class StatisticsActivity extends ActionBarActivity {
-    Logic logic = MainActivity.logic;
+    Logic logic;
 
     public void showResetStatisticsAlert() {
         Log.d("StatisticsActivity", "Displaying reset statistics alert");
@@ -49,14 +49,24 @@ public class StatisticsActivity extends ActionBarActivity {
     public void updateTextViews() {
         Log.d("StatisticsActivity", "Updating text views");
 
-        TextView nPlaysView = (TextView) findViewById(R.id.nPlaysLabel);
-        nPlaysView.setText(getString(R.string.label_times_played) + " " + Long.toString(logic.nPlays));
+        TextView view;
 
-        TextView nSwapsView = (TextView) findViewById(R.id.nSwapsLabel);
-        nSwapsView.setText(getString(R.string.label_times_swapped) + " " + Long.toString(logic.nSwaps));
+        view = (TextView) findViewById(R.id.nPlays);
+        view.setText(getString(R.string.label_times_played) + " " + Long.toString(logic.nPlays));
 
-        TextView nKeepsView = (TextView) findViewById(R.id.nKeepsLabel);
-        nKeepsView.setText(getString(R.string.label_times_kept) + " " + Long.toString(logic.nKeeps));
+        view = (TextView) findViewById(R.id.nSwaps);
+        view.setText(getString(R.string.label_times_swapped) + " " + Long.toString(logic.nSwaps));
+        view = (TextView) findViewById(R.id.nSwapWins);
+        view.setText(getString(R.string.label_times_swapped_and_won) + " " + Long.toString(logic.nSwapWins));
+        view = (TextView) findViewById(R.id.nSwapLost);
+        view.setText(getString(R.string.label_times_swapped_and_lost) + " " + Long.toString(logic.nSwapLost));
+
+        view = (TextView) findViewById(R.id.nKeeps);
+        view.setText(getString(R.string.label_times_kept) + " " + Long.toString(logic.nKeeps));
+        view = (TextView) findViewById(R.id.nKeepWins);
+        view.setText(getString(R.string.label_times_kept_and_won) + " " + Long.toString(logic.nKeepWins));
+        view = (TextView) findViewById(R.id.nKeepLost);
+        view.setText(getString(R.string.label_times_kept_and_lost) + " " + Long.toString(logic.nKeepLost));
     }
 
     @Override
@@ -64,7 +74,7 @@ public class StatisticsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        logic.loadStatistics(this);
+        logic = MainActivity.logic;
         updateTextViews();
     }
 

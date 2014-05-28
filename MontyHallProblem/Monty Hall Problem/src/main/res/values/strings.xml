@@ -16,7 +16,11 @@
     <string name="title_activity_display_statistics">Statistics</string>
     <string name="label_times_played">Times played:</string>
     <string name="label_times_swapped">Times swapped:</string>
+    <string name="label_times_swapped_and_won">Won:</string>
+    <string name="label_times_swapped_and_lost">Lost:</string>
     <string name="label_times_kept">Times kept:</string>
+    <string name="label_times_kept_and_won">Won:</string>
+    <string name="label_times_kept_and_lost">Lost:</string>
 
     // reset statistics alert dialog
     <string name="reset_statistics_alert_dialog_title">Reset statistics?</string>

@@ -95,12 +95,16 @@ public class MainActivity extends ActionBarActivity {
     public void onSwapPress(View view) {
         Log.d("MainActivity", "Pressed swap button");
 
-        logic.incSwaps(this);
         disableSwapAndKeepButtons();
 
         ImageView imageView = getDoorImageView(logic.selectedDoor);
         imageView.setImageResource(R.drawable.closed_door);
         logic.swapSelectedDoor();
+
+        if (logic.selectedDoor == logic.carDoor)
+            logic.incSwapWins(this);
+        else
+            logic.incSwapLost(this);
 
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
@@ -108,8 +112,12 @@ public class MainActivity extends ActionBarActivity {
     public void onKeepPress(View view) {
         Log.d("MainActivity", "Pressed keep button");
 
-        logic.incKeeps(this);
         disableSwapAndKeepButtons();
+
+        if (logic.selectedDoor == logic.carDoor)
+            logic.incKeepWins(this);
+        else
+            logic.incKeepLost(this);
 
         showProblemResult(logic.selectedDoor == logic.carDoor);
     }
@@ -183,20 +191,6 @@ public class MainActivity extends ActionBarActivity {
 
         // generate a new monty hall problem simulation
         logic.generateNewSimulation();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        logic.saveStatistics(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        logic.loadStatistics(this);
     }
 
     @Override
