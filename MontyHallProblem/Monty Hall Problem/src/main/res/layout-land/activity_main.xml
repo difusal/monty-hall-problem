@@ -1,0 +1,172 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.difusal.montyhallproblem.MainActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/buttons">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/step_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true">
+
+                <TextView
+                    android:id="@+id/label_choose_door"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="5dp"
+                    android:text="@string/label_choose_door"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <LinearLayout
+                    android:id="@+id/doors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_toRightOf="@+id/label_choose_door">
+
+                    <ImageView
+                        android:id="@+id/door1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door1Selected"
+                        android:src="@drawable/closed_door" />
+
+                    <ImageView
+                        android:id="@+id/door2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door2Selected"
+                        android:src="@drawable/closed_door" />
+
+                    <ImageView
+                        android:id="@+id/door3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/door_image"
+                        android:onClick="door3Selected"
+                        android:src="@drawable/closed_door" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/step_2"
+                android:layout_below="@+id/step_1">
+
+                <TextView
+                    android:id="@+id/label_choose_swap_or_keep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/step_1"
+                    android:padding="5dp"
+                    android:text="@string/label_choose_swap_or_keep"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/label_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/step_1"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:textSize="30dp"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:focusableInTouchMode="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/buttons_swap_or_keep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_swap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="onSwapPress"
+                android:text="@string/button_swap" />
+
+            <Button
+                android:id="@+id/button_keep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="onKeepPress"
+                android:text="@string/button_keep" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttons_restart_and_statistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_restart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:onClick="onRestartButtonPress"
+                android:text="@string/button_restart" />
+
+            <Button
+                android:id="@+id/button_statistics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onStatisticsButtonPress"
+                android:text="@string/button_statistics" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
