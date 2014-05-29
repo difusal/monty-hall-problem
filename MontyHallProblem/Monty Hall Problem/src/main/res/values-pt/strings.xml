@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // main activity
+    <string name="app_name">Problema de Monty Hall</string>
+    <string name="label_choose_door">1. Escolha uma porta.</string>
+    <string name="door_image">Imagem da porta</string>
+    <string name="label_choose_swap_or_keep">2. Deseja trocar ou manter a seleção?</string>
+    <string name="button_swap">Trocar</string>
+    <string name="button_keep">Manter</string>
+    <string name="label_car_result">Ganhou o carro!</string>
+    <string name="label_goat_result">Ganhou uma cabra.</string>
+    <string name="button_restart">Recomeçar</string>
+    <string name="button_statistics">Estatísticas</string>
+
+    // statistics activity
+    <string name="title_activity_display_statistics">Estatísticas</string>
+    <string name="label_times_played">Número de jogadas:</string>
+    <string name="label_times_swapped">Escolheu trocar:</string>
+    <string name="label_times_swapped_and_won">Ganhou:</string>
+    <string name="label_times_swapped_and_lost">Perdeu:</string>
+    <string name="label_times_kept">Escolheu manter:</string>
+    <string name="label_times_kept_and_won">Ganhou:</string>
+    <string name="label_times_kept_and_lost">Perdeu:</string>
+
+    // reset statistics alert dialog
+    <string name="reset_statistics_alert_dialog_title">Apagar estatísticas?</string>
+    <string name="reset_statistics_alert_dialog_message">Vai perder todos os dados guardados!</string>
+
+    // help activity
+    <string name="title_activity_help">Ajuda</string>
+    <string name="help_intro">O problema de Monty Hall é um quebra-cabeças na forma de um puzzle de probabilidades.</string>
+    <string name="help_problem">O problema é o seguinte:\nSuponha que está num programa de televisão em que lhe são apresentadas 3 portas: Por trás de uma está um carro; por trás das outras estão cabras. De seguida, pode escolher uma porta: a número 1, por exemplo; o apresentador, que sabe o que está por trás de cada porta, abre uma das portas não selecionadas que contém uma cabra: a número 3, por exemplo. Com isto o apresentador pergunta "Deseja manter a sua escolha (porta 1) ou trocar (neste caso para a porta 2)?"</string>
+    <string name="help_question">É vantajoso trocar a porta escolhida?</string>
+
+    // action bar buttons
+    <string name="action_reset_statistics">Apagar estatísticas</string>
+    <string name="action_help">Ajuda</string>
+
+    // others
+    <string name="button_yes">Sim</string>
+    <string name="button_no">Não</string>
+    <string name="swapped_and_won_key">swapped_and_won</string>
+    <string name="swapped_and_lost_key">swapped_and_lost</string>
+    <string name="kept_and_won_key">kept_and_won</string>
+    <string name="kept_and_lost_key">kept_and_lost</string>
+</resources>
