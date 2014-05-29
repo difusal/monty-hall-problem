@@ -11,8 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class StatisticsActivity extends ActionBarActivity implements View.OnClickListener {
@@ -41,6 +42,7 @@ public class StatisticsActivity extends ActionBarActivity implements View.OnClic
                     public void onClick(DialogInterface dialog, int id) {
                         logic.resetStatistics();
                         updateTextViews();
+                        updateGraphs();
                     }
                 })
                 .setNegativeButton(R.string.button_no, new DialogInterface.OnClickListener() {
@@ -79,6 +81,31 @@ public class StatisticsActivity extends ActionBarActivity implements View.OnClic
         view.setText(getString(R.string.label_times_kept_and_lost) + " " + Long.toString(logic.nKeepLost));
     }
 
+    public void updateGraphs() {
+        Log.d("StatisticsActivity", "Updating graph views");
+
+        ViewGroup.LayoutParams params;
+        int height = 20; //(int) (findViewById(R.id.swapsRelativeLayout).getHeight() * 0.2);
+
+        // swap stats
+        FrameLayout swapGraphLayout = (FrameLayout) findViewById(R.id.swapGraph);
+        params = swapGraphLayout.getLayoutParams();
+        params.height = height;
+        swapGraphLayout.setLayoutParams(params);
+
+        Graph swapGraph = new Graph(this, logic.nSwapWins, logic.nSwapLost);
+        swapGraphLayout.addView(swapGraph);
+
+        // keep stats
+        FrameLayout keepGraphLayout = (FrameLayout) findViewById(R.id.keepGraph);
+        params = keepGraphLayout.getLayoutParams();
+        params.height = height;
+        keepGraphLayout.setLayoutParams(params);
+
+        Graph keepGraph = new Graph(this, logic.nKeepWins, logic.nKeepLost);
+        keepGraphLayout.addView(keepGraph);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("StatisticsActivity", "onCreate was called");
@@ -88,6 +115,7 @@ public class StatisticsActivity extends ActionBarActivity implements View.OnClic
 
         logic = MainActivity.logic;
         updateTextViews();
+        updateGraphs();
 
         // Gesture detection
         gestureDetector = new GestureDetector(this, new MyGestureDetector());
@@ -101,8 +129,8 @@ public class StatisticsActivity extends ActionBarActivity implements View.OnClic
     }
 
     public void setViewsTouchListeners() {
-        RelativeLayout statisticsRelativeLayout = (RelativeLayout) findViewById(R.id.statisticsRelativeLayout);
-        statisticsRelativeLayout.setOnTouchListener(gestureListener);
+        LinearLayout statisticsLayout = (LinearLayout) findViewById(R.id.statisticsLayout);
+        statisticsLayout.setOnTouchListener(gestureListener);
     }
 
     @Override
