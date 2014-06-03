@@ -3,7 +3,7 @@ Monty Hall Problem
 
 My first android app: a simulation of the [Monty Hall Problem](http://en.wikipedia.org/wiki/Monty_Hall_problem).
 
-You can download the .apk [here](https://www.dropbox.com/s/axso05xzfk1m858/Monty%20Hall%20Problem.apk).
+You can download the .apk [here](http://bin.joaoan.es/MontyHallProblem-debug-unaligned.apk).
 
 ***
 Screenshots:
