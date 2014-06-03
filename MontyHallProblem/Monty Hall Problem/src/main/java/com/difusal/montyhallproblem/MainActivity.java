@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -229,10 +228,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     public void setViewsTouchListeners() {
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
         relativeLayout.setOnTouchListener(gestureListener);
-
-        // TODO resolve com.difusal.montyhallproblem E/ScrollView﹕ Invalid pointerId=-1 in onTouchEvent
-        ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-        scrollView.setOnTouchListener(gestureListener);
 
         RelativeLayout relativeLayout2 = (RelativeLayout) findViewById(R.id.relativeLayout2);
         relativeLayout2.setOnTouchListener(gestureListener);
