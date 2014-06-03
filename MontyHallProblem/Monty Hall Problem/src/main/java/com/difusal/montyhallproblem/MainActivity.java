@@ -251,6 +251,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        Log.v("MainActivity", "A click was detected");
+    }
+
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -276,10 +281,5 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         public boolean onDown(MotionEvent e) {
             return true;
         }
-    }
-
-    @Override
-    public void onClick(View view) {
-        Log.v("MainActivity", "A click was detected");
     }
 }
