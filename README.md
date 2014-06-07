@@ -10,4 +10,4 @@ Screenshots:
 
 ![image](http://i.imgur.com/3hl71Fl.png)|![image](http://i.imgur.com/pbTHxT1.png)|![image](http://i.imgur.com/DLvvzhM.png)
 ----------------------------------------|----------------------------------------|----------------------------------------
-![image](http://i.imgur.com/QpbGu06.png)|![image](http://i.imgur.com/x7ulJ2U.png)
+![image](http://i.imgur.com/QpbGu06.png)|![image](http://i.imgur.com/SgS3wym.png)|![image](http://i.imgur.com/x7ulJ2U.png)
